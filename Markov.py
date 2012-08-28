@@ -1,7 +1,7 @@
 import random
 import re
 
-class markov(object):
+class Markov(object):
     def __init__(self,filename):
         with open(filename,'r') as f:
             self._words = f.read().split()
