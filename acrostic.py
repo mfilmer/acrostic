@@ -1,4 +1,5 @@
 import random
+import string
 import sys
 import re
 
@@ -29,12 +30,13 @@ def main():
         poem = []
         for letter in word:
             if len(poem) == 0:
-                poem.append(list.getRandWord(pattern=r'^[{0}.*$]'.format(letter)))
+                nextWord = list.getRandWord(pattern=r'^[{0}.*$]'.format(letter))
             else:
                 nextWord = list.getRandWord(poem[-1],r'^{0}.*$'.format(letter))
                 if nextWord is None:
                     nextWord = list.getRandWord(pattern=r'^{0}.*$'.format(letter))
-                poem.append(nextWord)
+            nextWord = ''.join(ch for ch in nextWord if ch not in string.punctuation)
+            poem.append(nextWord)
         
         print word
         print '='*len(word)
