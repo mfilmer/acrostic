@@ -13,8 +13,11 @@ class markov(object):
                 if seedWord == self._words[i].lower()]
         else:
             chainWords = self._words
-        p = re.compile(pattern)
+        p = re.compile(pattern,re.IGNORECASE)
         return filter(p.match,chainWords)
     
     def getRandWord(self,seedWord=None,pattern=r'^.*$'):
+        wordList = self.getWordList(seedWord,pattern)
+        if len(wordList) == 0:
+            return None
         return random.choice(self.getWordList(seedWord,pattern))
